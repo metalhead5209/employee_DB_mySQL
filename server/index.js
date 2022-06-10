@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-const dbConnect = require('./dbConnect')
+const dbinstance = require('./dbConnect');
 
 
 // MIDDLEWARE
@@ -23,9 +23,8 @@ app.post('/insert', (req, res) => {
 
 // RENDER
 app.get('/all', (req, res) => {
-    res.json({
-        success: true
-    });
+    const db = dbinstance.getDbInstance();
+    const result = db.getData()
 })
 
 
