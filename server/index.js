@@ -21,7 +21,9 @@ app.post('/insert', (req, res) => {
 
 // RENDER
 app.get('/all', (req, res) => {
-    console.log('test');
+    res.json({
+        success: true
+    });
 })
 
 
