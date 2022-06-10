@@ -1,0 +1,22 @@
+main {
+    text-align: center;
+    margin: 5em auto;
+    width: 60%;
+}
+
+.input-div {
+    margin-top: 3em;
+}
+
+table {
+    margin: 5em auto;
+}
+
+table, th, td {
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 5px;
+}
