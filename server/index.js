@@ -5,6 +5,8 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
+const dbConnect = require('./dbConnect')
+
 
 // MIDDLEWARE
 app.use(cors());
