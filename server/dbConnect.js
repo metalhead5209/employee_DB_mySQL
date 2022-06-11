@@ -2,6 +2,7 @@ const mysql = require('mysql');
 const dotenv = require('dotenv');
 
 
+
 dotenv.config();
 
 let instance = null;
@@ -66,7 +67,7 @@ class dbinstance {
     async deleteEmpById(ID) {
        try {
         ID = parseInt(ID);
-        const res = await new Promise((resolve, reject) => {
+        const response = await new Promise((resolve, reject) => {
             const query = "DELETE FROM directory WHERE directory.ID = ?";
 
             dbConnect.query(query, [ID] , (err, result) => {
@@ -74,12 +75,30 @@ class dbinstance {
                 resolve(result.affectedRows)
             })
         });
-        return res === 1 ? true : false;
+        return response === 1 ? true : false;
        } catch (err) {
         console.log(err);
         return false;
        }
+    }
 
+    async updateEmpById(ID, name) {
+        try {
+            ID = parseInt(ID, 10);
+            const response = await new Promise((resolve, reject) => {
+                const query = "UPDATE directory SET name = ? WHERE directory.ID = ?";
+    
+                dbConnect.query(query, [name, ID] , (err, result) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(result)
+                })
+            });
+            console.log(result)
+            return response === 1 ? true : false;
+           } catch (err) {
+            console.log(err);
+            return false;
+           }
     }
 }
 

@@ -1,10 +1,23 @@
+
+
 document.addEventListener('DOMContentLoaded', () => {
     fetch('http://localhost:5252/all')
-    .then(response => response.json())
+    .then(res => res.json())
     .then(data => loadTable(data['data']));
     
 });
 
+
+document.querySelector('table tbody').addEventListener('click', (e) => {
+    if (e.target.className === 'delete-emp-btn') {
+        deleteEmpById(e.target.dataset.id)
+    }
+    if (e.target.className === 'edit-emp-btn') {
+        editById(e.target.dataset.id);
+    }
+});
+
+const nameUpdateBtn = document.querySelector('#update-emp-btn')
 
 // Add Employee
 const addEmpBtn = document.querySelector('#addBtn').addEventListener('click', () => {
@@ -28,14 +41,36 @@ const addEmpBtn = document.querySelector('#addBtn').addEventListener('click', ()
   }
 });
 
+const editById = (ID) => {
+    const editSection = document.querySelector('#editSection');
+    editSection.hidden = false;
+    document.querySelector('#update-emp-btn').dataset.ID = ID
+}
+
+nameUpdateBtn.addEventListener('click', () => {
+    const updatedInput = document.querySelector('#name-input');
+
+    fetch('http://localhost:5252/update', {
+        method: 'PATCH',
+        headers: {
+            'Content-type' : 'application/json'
+        },
+        body: JSON.stringify({
+            ID: updatedInput.dataset.ID,
+            name: updatedInput.value
+        })
+    })
+    .then(res = res.json())
+    .then(data => {
+        if (data.success) {
+            window.location.reload();
+        }
+    })
+
+})
+
 
 // Delete Employee
-document.querySelector('table tbody').addEventListener('click', (e) => {
-    if (e.target.className === 'delete-emp-btn') {
-        deleteEmpById(e.target.dataset.id)
-    }
-});
-
 const deleteEmpById = (ID) => {
     fetch('http://localhost:5252/delete/' + ID, {
         method: 'DELETE'
