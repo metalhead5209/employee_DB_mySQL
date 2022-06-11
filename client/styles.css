@@ -1,5 +1,7 @@
 body {
     background-color: #4895ef;
+    height: 100vh;
+    
     
 }
 
@@ -10,12 +12,18 @@ h1 {
 main {
     padding: 3em;
     text-align: center;
-    margin: 5em auto;
-    width: 30%;
+    margin: 3em auto;
+    width: 30em;
     height: 20em;
     background-color: rgba(248, 248, 248, 0.937);
     border-radius: 10px;
     box-shadow: 0 0 5px;
+}
+
+.txtInput {
+    padding: .3em;
+    border-radius: 5px;
+    margin: .5em;
 }
 
 .input-div {
