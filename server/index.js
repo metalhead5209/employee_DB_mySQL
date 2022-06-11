@@ -21,7 +21,7 @@ app.post('/add', (req, res) => {
     const db = dbinstance.getDbInstance();
     const result = db.insertNewEmp(name);
     result
-    .then(data => res.json({ success: true }))
+    .then(data => res.json({ data: data }))
     .catch(err => console.log(err));
     
 })

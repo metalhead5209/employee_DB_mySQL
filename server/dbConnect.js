@@ -53,11 +53,11 @@ class dbinstance {
                 })
             });
             console.log(insertId)
-            // return {
-            //     id : insertId,
-            //     name : name,
-            //     dateHired : dateHired
-            // };
+            return {
+                id : insertId,
+                name : name,
+                dateHired : dateHired
+            };
         } catch (error) {
             console.log(error);
         }

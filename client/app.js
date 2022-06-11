@@ -29,7 +29,31 @@ const addEmpBtn = document.querySelector('#addBtn').addEventListener('click', ()
 })
     
 const rowInTable = (data) => {
+    const table = document.querySelector('table tbody');
+    const isTableData = table.querySelector('.no-data');
 
+    let tableHtml = "<tr>"
+
+    for (var key in data) {
+        if (data.hasOwnProperty(ke)) {
+            if (key === 'dateHired') {
+                data[key] = new Date(data[key]).toLocaleString();
+            }
+            tableHtml += `<td>${data[key]}</td>`;
+        } 
+    }
+
+    tableHtml += `<td><button class="delete-row-btn" data-id=${data.ID}>Delete</td>`;
+    tableHtml += `<td><button class="edit-row-btn" data-id=${data.ID}>Edit</td>`;
+
+    tableHtml += "</tr>"
+
+    if (isTableData) {
+        table.innerHTML = tableHtml;
+    } else {
+        const newRow = table.insertRow();
+        newRow.innerHTML = tableHtml
+    }
 }
 
 const loadTable = (data) => {
