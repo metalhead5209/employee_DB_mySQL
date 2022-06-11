@@ -1,7 +1,21 @@
+body {
+    background-color: #4895ef;
+    
+}
+
+h1 {
+    text-align: center;
+}
+
 main {
+    padding: 3em;
     text-align: center;
     margin: 5em auto;
-    width: 60%;
+    width: 30%;
+    height: 20em;
+    background-color: rgba(248, 248, 248, 0.937);
+    border-radius: 10px;
+    box-shadow: 0 0 5px;
 }
 
 .input-div {
@@ -10,6 +24,7 @@ main {
 
 table {
     margin: 5em auto;
+    
 }
 
 table, th, td {
@@ -20,3 +35,4 @@ table, th, td {
 th, td {
     padding: 5px;
 }
+
