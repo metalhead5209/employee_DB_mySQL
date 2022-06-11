@@ -1,10 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
     fetch('http://localhost:5252/all')
-    .then(res => res.json())
+    .then(response => response.json())
     .then(data => loadTable(data['data']));
     
 });
 
+
+// Add Employee
 const addEmpBtn = document.querySelector('#addBtn').addEventListener('click', () => {
     const nameInput = document.querySelector('#emp');
     const name = nameInput.value;
@@ -13,21 +15,39 @@ const addEmpBtn = document.querySelector('#addBtn').addEventListener('click', ()
         alert('Please Enter Name')
     } else {
 
-    
     fetch('http://localhost:5252/add', {
         headers: {
             'Content-type': 'application/json'
         },
-        method: 'post',
+        method: 'POST',
         body: JSON.stringify({ name : name })
     })
     .then(res => res.json())
     .then(data => rowInTable(data['data']));
     window.location.reload();
-    console.log(id)
   }
-})
-    
+});
+
+
+// Delete Employee
+document.querySelector('table tbody').addEventListener('click', (e) => {
+    if (e.target.className === 'delete-emp-btn') {
+        deleteEmpById(e.target.dataset.id)
+    }
+});
+
+const deleteEmpById = (ID) => {
+    fetch('http://localhost:5252/delete/' + ID, {
+        method: 'DELETE'
+    })
+    .then(res => res.json())
+    .then(data => console.log(data));
+    window.location.reload();
+}
+
+
+
+// Insert row into HTML table  
 const rowInTable = (data) => {
     const table = document.querySelector('table tbody');
     const isTableData = table.querySelector('.no-data');
@@ -43,8 +63,8 @@ const rowInTable = (data) => {
         } 
     }
 
-    tableHtml += `<td><button class="delete-row-btn" data-id=${data.ID}>Delete</td>`;
-    tableHtml += `<td><button class="edit-row-btn" data-id=${data.ID}>Edit</td>`;
+    tableHtml += `<td><button class="delete-emp-btn" data-id=${data.ID}>Delete</td>`;
+    tableHtml += `<td><button class="edit-emp-btn" data-id=${data.ID}>Edit</td>`;
 
     tableHtml += "</tr>"
 
@@ -56,6 +76,8 @@ const rowInTable = (data) => {
     }
 }
 
+
+// Render HTML Table
 const loadTable = (data) => {
     const table = document.querySelector('table tbody');
     
@@ -70,8 +92,8 @@ const loadTable = (data) => {
         tableHtml += `<td>${ID}</td>`;
         tableHtml += `<td>${name}</td>`;
         tableHtml += `<td>${new Date(date_hired).toLocaleString()}</td>`;
-        tableHtml += `<td><button class="delete-row-btn" data-id=${ID}>Delete</td>`;
-        tableHtml += `<td><button class="edit-row-btn" data-id=${ID}>Edit</td>`;
+        tableHtml += `<td><button class="delete-emp-btn" data-id=${ID}>Delete</td>`;
+        tableHtml += `<td><button class="edit-emp-btn" data-id=${ID}>Edit</td>`;
         tableHtml += '</tr>';
     });
 

@@ -54,7 +54,7 @@ class dbinstance {
             });
             console.log(insertId)
             return {
-                id : insertId,
+                ID : insertId,
                 name : name,
                 dateHired : dateHired
             };
@@ -62,8 +62,25 @@ class dbinstance {
             console.log(error);
         }
     }
-    
- 
+
+    async deleteEmpById(ID) {
+       try {
+        ID = parseInt(ID);
+        const res = await new Promise((resolve, reject) => {
+            const query = "DELETE FROM directory WHERE directory.ID = ?";
+
+            dbConnect.query(query, [ID] , (err, result) => {
+                if (err) reject(new Error(err.message));
+                resolve(result.affectedRows)
+            })
+        });
+        return res === 1 ? true : false;
+       } catch (err) {
+        console.log(err);
+        return false;
+       }
+
+    }
 }
 
 module.exports = dbinstance;

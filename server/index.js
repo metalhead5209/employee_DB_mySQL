@@ -45,6 +45,14 @@ app.get('/all', (req, res) => {
 
 
 // DELETE
+app.delete('/delete/:ID', (req, res) => {
+    const { ID } = req.params;
+    const db = dbinstance.getDbInstance();
+    const result = db.deleteEmpById(ID);
+    result
+    .then(data => res.json({success: data}))
+    .catch(err => console.log(err));
+})
 
 
 // PORT
