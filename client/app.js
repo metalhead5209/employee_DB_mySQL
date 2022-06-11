@@ -23,7 +23,9 @@ const addEmpBtn = document.querySelector('#addBtn').addEventListener('click', ()
     })
     .then(res => res.json())
     .then(data => rowInTable(data['data']));
-    window.location.reload();}
+    window.location.reload();
+    console.log(id)
+  }
 })
     
 const rowInTable = (data) => {
@@ -39,13 +41,13 @@ const loadTable = (data) => {
     }
     let tableHtml = '';
 
-    data.forEach(({id, name, date_hired}) => {
+    data.forEach(({ID, name, date_hired}) => {
         tableHtml += '<tr>';
-        tableHtml += `<td>${id}</td>`;
+        tableHtml += `<td>${ID}</td>`;
         tableHtml += `<td>${name}</td>`;
         tableHtml += `<td>${new Date(date_hired).toLocaleString()}</td>`;
-        tableHtml += `<td><button class="delete-row-btn" data-id=${id}>Delete</td>`;
-        tableHtml += `<td><button class="edit-row-btn" data-id=${id}>Edit</td>`;
+        tableHtml += `<td><button class="delete-row-btn" data-id=${ID}>Delete</td>`;
+        tableHtml += `<td><button class="edit-row-btn" data-id=${ID}>Edit</td>`;
         tableHtml += '</tr>';
     });
 

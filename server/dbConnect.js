@@ -45,7 +45,7 @@ class dbinstance {
         try {
             const dateHired = new Date();
             const insertId = await new Promise((resolve, reject) => {
-                const query = 'INSERT INTO directory (name, date_hired, id) VALUES (?,?);';
+                const query = 'INSERT INTO directory (name, date_hired) VALUES (?,?);';
 
                 dbConnect.query(query, [name, dateHired] , (err, result) => {
                     if (err) reject(new Error(err.message));
@@ -53,11 +53,11 @@ class dbinstance {
                 })
             });
             console.log(insertId)
-            return {
-                id : insertId,
-                name : name,
-                dateHired : dateHired
-            };
+            // return {
+            //     id : insertId,
+            //     name : name,
+            //     dateHired : dateHired
+            // };
         } catch (error) {
             console.log(error);
         }
