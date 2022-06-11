@@ -39,25 +39,31 @@ class dbinstance {
         } catch (err) {
             console.log(err)
         }
-    };
-    
+    }
+
     async insertNewEmp(name) {
-        try{
-            const dateEmployed = new Date();
+        try {
+            const dateHired = new Date();
             const insertId = await new Promise((resolve, reject) => {
-                const query = "INSERT INTO directory (directory, date_hired) VALUES (?,?);";
+                const query = 'INSERT INTO directory (name, date_hired, id) VALUES (?,?);';
 
                 dbConnect.query(query, [name, dateHired] , (err, result) => {
                     if (err) reject(new Error(err.message));
-                    resolve(result.insertId)
+                    resolve(result.insertId);
                 })
             });
             console.log(insertId)
-            return res;
-        } catch (err) {
-            console.log(err)
+            return {
+                id : insertId,
+                name : name,
+                dateHired : dateHired
+            };
+        } catch (error) {
+            console.log(error);
         }
     }
+    
+ 
 }
 
 module.exports = dbinstance;
