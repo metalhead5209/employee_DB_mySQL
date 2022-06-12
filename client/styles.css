@@ -1,12 +1,21 @@
 body {
-    background-color: #4895ef;
+    background-color: rgba(75, 116, 69, 0.937);
     height: fit-content;
-    
-    
+    text-align: center;
 }
 
 h1 {
     text-align: center;
+}
+
+section {
+    margin: auto;
+    width: 75%;
+    color: white;
+}
+
+img {
+    border-radius: 10px;
 }
 
 main {
@@ -15,7 +24,7 @@ main {
     margin: 5em auto;
     width: 30em;
     height: inherit;
-    background-color: rgba(248, 248, 248, 0.937);
+    background-color: rgba(75, 116, 69, 0.937);
     border-radius: 10px;
     box-shadow: 0 0 5px;
 }
@@ -41,6 +50,23 @@ table, th, td {
 }
 
 th, td {
-    padding: 5px;
+    padding: .8em;
 }
 
+main, label {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+button {
+    padding: .5em;
+    border-radius: 5px;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 5px white;;
+}
+
+.hidden {
+    visibility: none;
+}
