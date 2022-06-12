@@ -12,9 +12,6 @@ document.querySelector('table tbody').addEventListener('click', (e) => {
     if (e.target.className === 'delete-emp-btn') {
         deleteEmpById(e.target.dataset.id)
     }
-    if (e.target.className === 'edit-emp-btn') {
-        editById(e.target.dataset.id);
-    }
 });
 
 const nameUpdateBtn = document.querySelector('#update-emp-btn')
@@ -41,33 +38,6 @@ const addEmpBtn = document.querySelector('#addBtn').addEventListener('click', ()
   }
 });
 
-const editById = (ID) => {
-    const editSection = document.querySelector('#editSection');
-    editSection.hidden = false;
-    document.querySelector('#update-emp-btn').dataset.ID = ID
-}
-
-nameUpdateBtn.addEventListener('click', () => {
-    const updatedInput = document.querySelector('#name-input');
-
-    fetch('http://localhost:5252/update', {
-        method: 'PATCH',
-        headers: {
-            'Content-type' : 'application/json'
-        },
-        body: JSON.stringify({
-            ID: updatedInput.dataset.ID,
-            name: updatedInput.value
-        })
-    })
-    .then(res = res.json())
-    .then(data => {
-        if (data.success) {
-            window.location.reload();
-        }
-    })
-
-})
 
 
 // Delete Employee
@@ -99,8 +69,7 @@ const rowInTable = (data) => {
     }
 
     tableHtml += `<td><button class="delete-emp-btn" data-id=${data.ID}>Delete</td>`;
-    tableHtml += `<td><button class="edit-emp-btn" data-id=${data.ID}>Edit</td>`;
-
+   
     tableHtml += "</tr>"
 
     if (isTableData) {
@@ -128,7 +97,6 @@ const loadTable = (data) => {
         tableHtml += `<td>${name}</td>`;
         tableHtml += `<td>${new Date(date_hired).toLocaleString()}</td>`;
         tableHtml += `<td><button class="delete-emp-btn" data-id=${ID}>Delete</td>`;
-        tableHtml += `<td><button class="edit-emp-btn" data-id=${ID}>Edit</td>`;
         tableHtml += '</tr>';
     });
 

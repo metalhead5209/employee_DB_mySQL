@@ -81,25 +81,6 @@ class dbinstance {
         return false;
        }
     }
-
-    async updateEmpById(ID, name) {
-        try {
-            ID = parseInt(ID, 10);
-            const response = await new Promise((resolve, reject) => {
-                const query = "UPDATE directory SET name = ? WHERE directory.ID = ?";
-    
-                dbConnect.query(query, [name, ID] , (err, result) => {
-                    if (err) reject(new Error(err.message));
-                    resolve(result)
-                })
-            });
-            console.log(result)
-            return response === 1 ? true : false;
-           } catch (err) {
-            console.log(err);
-            return false;
-           }
-    }
 }
 
 module.exports = dbinstance;

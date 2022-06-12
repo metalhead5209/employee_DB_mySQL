@@ -39,18 +39,6 @@ app.get('/all', (req, res) => {
 
 
 
-// EDIT
-app.patch('/update', (req, res) => {
-    const { ID, name } = req.body;
-    const db = dbinstance.getDbInstance();
-    const result = db.updateEmpById(ID, name);
-    result
-    .then(data => res.json({success: data}))
-    .catch(err => console.log(err));
-})
-
-
-
 
 // DELETE
 app.delete('/delete/:ID', (req, res) => {

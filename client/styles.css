@@ -1,6 +1,6 @@
 body {
     background-color: #4895ef;
-    height: 100vh;
+    height: fit-content;
     
     
 }
@@ -12,9 +12,9 @@ h1 {
 main {
     padding: 3em;
     text-align: center;
-    margin: 3em auto;
+    margin: 5em auto;
     width: 30em;
-    height: 50%;
+    height: inherit;
     background-color: rgba(248, 248, 248, 0.937);
     border-radius: 10px;
     box-shadow: 0 0 5px;
