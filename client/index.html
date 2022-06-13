@@ -12,12 +12,14 @@
 
          <img src="/imgs/logo.png" alt="logo">
     <h1>Employee Directory</h1>
-    <main hidden>
-        
+
+    <button class="open">Open Directory</button>
+    <main class="directory">
+      <!-- <div class="directory"> -->
+        <span id="close-btn">&#88</span>
         <label for="emp">Employee Name: </label> <br>
         <input type="text" id="emp" name="employee" class="txtInput">
         <button id="addBtn">Add Employee</button>
-
         <div class="input-div">
             <input placeholder="Search Employee Name" id="search-input" class="txtInput">
             <button id="searchBtn">Search</button>
@@ -32,12 +34,12 @@
             </thead>
             <tbody></tbody>
         </table>
-
+      </div>
   
 
     </section>
    
-    </main>
+    <!-- </main> -->
 
 
     <script src="app.js"></script>

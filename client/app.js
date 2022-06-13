@@ -102,3 +102,13 @@ const loadTable = (data) => {
 
     table.innerHTML = tableHtml;
 }
+
+const directory = document.querySelector('.directory');
+
+const openDir = document.querySelector('.open').addEventListener('click', () => {
+    directory.style.display = 'block';
+});
+
+const closeBtn = document.querySelector('#close-btn').addEventListener('click', () => {
+    directory.style.display = "none";
+});

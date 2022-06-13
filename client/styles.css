@@ -64,9 +64,28 @@ button {
 
 button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 0 5px white;;
+    box-shadow: 0 0 5px white;
+    border: none;
+    cursor: pointer;
 }
 
-.hidden {
-    visibility: none;
+.open {
+    padding: .5em;
+    width: 10em;
+    font-size: 1.5em;   
+    background-color: rgb(230, 230, 230);
+}
+
+.directory {
+    display: none;
+}
+
+#close-btn {
+    position: relative;
+    left: -38%;
+}
+
+#close-btn:hover {
+    color: red;
+    cursor: pointer;
 }
