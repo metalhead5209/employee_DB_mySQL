@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // POST
 app.post('/add', (req, res) => {
-    const { name } = req.body;
+    let { name } = req.body;
     const db = dbinstance.getDbInstance();
     const result = db.insertNewEmp(name);
     result

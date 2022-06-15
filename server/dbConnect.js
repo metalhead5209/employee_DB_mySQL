@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 
 
 
+
 dotenv.config();
 
 let instance = null;
@@ -32,6 +33,23 @@ class dbinstance {
                 const query  = 'SELECT * FROM directory;';
 
                 dbConnect.query(query, (err, results) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(results);
+                })
+            });
+            return res;
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    async searchEmpByName() {
+        
+        try {
+            const res = await new Promise((resolve, reject) => {
+                const query  = 'SELECT * FROM directory WHERE names = ?;';
+
+                dbConnect.query(query, [name], (err, results) => {
                     if (err) reject(new Error(err.message));
                     resolve(results);
                 })
@@ -81,6 +99,8 @@ class dbinstance {
         return false;
        }
     }
+
+    
 }
 
 module.exports = dbinstance;

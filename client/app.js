@@ -14,6 +14,16 @@ document.querySelector('table tbody').addEventListener('click', (e) => {
     }
 });
 
+const directory = document.querySelector('.directory');
+
+const openDir = document.querySelector('.open').addEventListener('click', () => {
+    directory.style.display = 'block';
+});
+
+const closeBtn = document.querySelector('#close-btn').addEventListener('click', () => {
+    directory.style.display = "none";
+});
+
 const nameUpdateBtn = document.querySelector('#update-emp-btn')
 
 // Add Employee
@@ -103,12 +113,11 @@ const loadTable = (data) => {
     table.innerHTML = tableHtml;
 }
 
-const directory = document.querySelector('.directory');
-
-const openDir = document.querySelector('.open').addEventListener('click', () => {
-    directory.style.display = 'block';
-});
-
-const closeBtn = document.querySelector('#close-btn').addEventListener('click', () => {
-    directory.style.display = "none";
-});
+const searchBtn = document.querySelector('#searchBtn').addEventListener('click', () => {
+    const searchVal = document.querySelector('#search-input').value;
+    
+    
+    fetch('http://localhost:5252/search/' + searchVal)
+    .then(res => res.json())
+    .then(data => loadTable(data['data']));
+})
