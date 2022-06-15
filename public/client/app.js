@@ -1,7 +1,7 @@
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('http://localhost:5252/all')
+    fetch('http://localhost:5252/public/all')
     .then(res => res.json())
     .then(data => loadTable(data['data']));
     
@@ -35,7 +35,7 @@ const addEmpBtn = document.querySelector('#addBtn').addEventListener('click', ()
         alert('Please Enter Name')
     } else {
 
-    fetch('http://localhost:5252/add', {
+    fetch('http://localhost:5252/public/add', {
         headers: {
             'Content-type': 'application/json'
         },
@@ -52,7 +52,7 @@ const addEmpBtn = document.querySelector('#addBtn').addEventListener('click', ()
 
 // Delete Employee
 const deleteEmpById = (ID) => {
-    fetch('http://localhost:5252/delete/' + ID, {
+    fetch('http://localhost:5252/public/delete/' + ID, {
         method: 'DELETE'
     })
     .then(res => res.json())
@@ -113,11 +113,3 @@ const loadTable = (data) => {
     table.innerHTML = tableHtml;
 }
 
-const searchBtn = document.querySelector('#searchBtn').addEventListener('click', () => {
-    const searchVal = document.querySelector('#search-input').value;
-    
-    
-    fetch('http://localhost:5252/search/' + searchVal)
-    .then(res => res.json())
-    .then(data => loadTable(data['data']));
-})

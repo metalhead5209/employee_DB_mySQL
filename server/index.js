@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 
 
 // POST
-app.post('/add', (req, res) => {
+app.post('/public/add', (req, res) => {
     let { name } = req.body;
     const db = dbinstance.getDbInstance();
     const result = db.insertNewEmp(name);
@@ -29,7 +29,7 @@ app.post('/add', (req, res) => {
 
 
 // RENDER
-app.get('/all', (req, res) => {
+app.get('/public/all', (req, res) => {
     const db = dbinstance.getDbInstance();
     const result = db.getData()
     result
@@ -41,7 +41,7 @@ app.get('/all', (req, res) => {
 
 
 // DELETE
-app.delete('/delete/:ID', (req, res) => {
+app.delete('/public/delete/:ID', (req, res) => {
     const { ID } = req.params;
     const db = dbinstance.getDbInstance();
     const result = db.deleteEmpById(ID);
